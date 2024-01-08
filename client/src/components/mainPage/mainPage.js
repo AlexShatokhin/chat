@@ -1,7 +1,8 @@
 import Users from "../users/users"
+import Disconnect from "../disconnect/disconnect"
 
 import "./mainPage.scss"
-const MainPage = ({socket}) => {
+const MainPage = ({socket, data}) => {
 
     return (
         <div className="main-page">
@@ -15,7 +16,12 @@ const MainPage = ({socket}) => {
             </div>
             <div className="chat">
                 <div className="chat-header">
-
+                    <div className="chat-title">
+                        Общий чат
+                    </div>
+                    <div className="chat-disconnect">
+                        <Disconnect socket={socket} data = {data} /> 
+                    </div>
                 </div>
                 <div className="chat-content">
 

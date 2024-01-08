@@ -37,7 +37,22 @@ io.on("connection", (socket) => {
         })
 
         io.sockets.emit("usersFetched", users);
+    })
 
+    socket.on("forceDisconnect", async () => {
+        socket.disconnect();
+
+
+        let clients = await io.in("messenger").fetchSockets()
+        clients = clients.map(client => client.realID);
+
+        const users = await controllers.getUsers()
+        users.map(user => {
+            user.online = clients.indexOf(user.id) !== -1;
+            return user;
+        })
+
+        io.sockets.emit("usersFetched", users);
     })
 })
 
