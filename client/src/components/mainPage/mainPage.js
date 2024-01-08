@@ -1,14 +1,7 @@
-import {useEffect} from "react"
+import Users from "../users/users"
 
 import "./mainPage.scss"
 const MainPage = ({socket}) => {
-
-    useEffect(() => {
-        socket.current.emit("getUsersStatus")
-        socket.current.on("usersFetched", (data) => {
-            console.log(data);
-        })
-    }, [])
 
     return (
         <div className="main-page">
@@ -17,7 +10,7 @@ const MainPage = ({socket}) => {
                     Пользователи
                 </div>
                 <div className="users-content">
-                    
+                    <Users socket={socket}/>
                 </div> 
             </div>
             <div className="chat">
