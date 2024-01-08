@@ -1,10 +1,35 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router";
 
 import "./authorization.scss"
-const Authorization = ({checkUserAuth}) => {
+const Authorization = ({socket, setUserData}) => {
 
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
+    const [signData, setSignData] = useState({});
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(socket.current){
+            console.log("Good morning!");
+            socket.current.on("connect", () => {
+                console.log("User connected successfully!");
+                socket.current.on("authChecked", (data) => {
+                    const {name, login} = data;
+                    setSignData(data);
+                    setUserData(data);
+
+                    if(typeof name !== "number")
+                        navigate(login)
+
+                })
+            })
+        }
+    }, [socket])
+
+	function checkUserAuth(login, password){
+		socket.current.emit("auth", login, password)
+	}
 
     return (
         <div className="auth-form">
