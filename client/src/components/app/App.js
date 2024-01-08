@@ -26,7 +26,7 @@ function App() {
 							<Authorization setUserData = {setUserData} socket = {socket}/>
 						</header>
 					}/>
-					<Route path = "/:login" element = {<MainPage />}/>
+					<Route path = "/:login" element = {<MainPage socket = {socket}/>}/>
 				</Routes>
 			</BrowserRouter>
 

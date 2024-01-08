@@ -1,11 +1,20 @@
+import {useEffect} from "react"
 
 import "./mainPage.scss"
-const MainPage = () => {
+const MainPage = ({socket}) => {
+
+    useEffect(() => {
+        socket.current.emit("getUsersStatus")
+        socket.current.on("usersFetched", (data) => {
+            console.log(data);
+        })
+    }, [])
+
     return (
         <div className="main-page">
             <div className="users">
                 <div className="users-header">
-
+                    Пользователи
                 </div>
                 <div className="users-content">
                     
