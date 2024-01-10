@@ -22,6 +22,18 @@ class Post {
         return response;
     }
 
+    async addMessage(message, user, time){
+        await db.query(`
+            INSERT INTO messages(messageContent, userID, sendTime)
+            VALUES('${message}', '${user}', '${time}')
+        `)
+    }
+
+    async getMessages(){
+        const [response] = await db.query("SELECT * FROM messages");
+        return response;
+    }
+
 }
 
 module.exports = new Post();
