@@ -1,8 +1,8 @@
 .chat-wrapper{
     scroll-behavior: smooth;
     width: 100%;
-    height: calc(100vh - 75px - 70px);
-    background-color: rgba(255, 228, 196, 0.263);
+    height: calc(100vh - 75px - 85px);
+    background-color: #3b4760;
     padding-top: 20px;
 
     overflow-y: auto;
@@ -10,8 +10,7 @@
     .message-item{
         width: 350px;
         min-height: 20px;
-        background-color: #FFFFFF;
-        border: 1px solid #000000;
+        background-color: #a7b5d1e5;
         border-radius: 7px;
         padding: 3px 7px;
         margin-bottom: 10px;

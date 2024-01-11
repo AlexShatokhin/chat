@@ -1,11 +1,32 @@
 .disconnect-content{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 300px;
     font-weight: 600;
     font-size: 23px;
     a{
         color: black;
         text-decoration: none;
+    }
+    .disconnect-button{
+        padding: 5px 10px;
+        font-size: 23px;
+        cursor: pointer;
+        border: 3px solid #FFFFFF;
+        border-radius: 12px;
+        background-color: #282c34;
+        color: #FFFFFF;
+        transition: .2s all;
+        &:hover{
+            background-color: #FFFFFF;
+            border-color: #FFFFFF;
+            color: #282c34;  
+        }
+        &:active{
+            background-color: #b6b6b6;
+            border-color: #b6b6b6;
+            color: #282c34;
+        }
     }
 }

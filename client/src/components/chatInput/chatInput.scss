@@ -6,10 +6,31 @@
         height: 50px;
         font-size: 23px;
         padding-left: 20px;
+        border: 1px solid #282c34;
+        border-right: none;
+        color: #e7e7e7;
+        background-color: #282c34;
+        border-top: 1px solid #FFFFFF;
     }
     &__button{
         width: 20%;
         font-size: 23px;
         cursor: pointer;
+        border: 1px solid #282c34;
+        background-color: #282c34;
+        color: #FFFFFF;
+        border-top: 1px solid #FFFFFF;
+        border-left: 1px solid #FFFFFF;
+        transition: .2s all;
+        &:hover{
+            background-color: #FFFFFF;
+            border-color: #FFFFFF;
+            color: #282c34;  
+        }
+        &:active{
+            background-color: #b6b6b6;
+            border-color: #b6b6b6;
+            color: #282c34;
+        }
     }
 }
