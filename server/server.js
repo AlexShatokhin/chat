@@ -37,7 +37,7 @@ io.on("connection", (socket) => {
     })
 
     socket.on("addNewMessage", async (message) => {
-        const date = `${new Date().getDate()}/${new Date().getMonth()+1}/${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}`;
+        const date = `${getZero(new Date().getDate())}/${getZero(new Date().getMonth()+1)}/${new Date().getFullYear()} ${getZero(new Date().getHours())}:${getZero(new Date().getMinutes())}`;
         const user = socket.realID;
 
         await controllers.addMessage(message, user, date);
@@ -77,4 +77,8 @@ async function sendMessages(){
     let allMessages = await controllers.getMessages()
 
     io.sockets.emit("getMessage", allMessages)
+}
+
+function getZero(number){
+    return number > 9 ? number : "0" + number; 
 }

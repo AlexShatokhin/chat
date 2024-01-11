@@ -14,7 +14,8 @@ const ChatInput = ({socket}) => {
 
     return (
         <div className="chat-form">
-            <input 
+            <input
+                multiple
                 type="text" 
                 className="chat-form__input" 
                 placeholder="Введите сообщение"

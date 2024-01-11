@@ -6,7 +6,11 @@ const Chat = ({socket}) => {
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        socket.current.on("getMessage", (message) => setMessages(message))
+        socket.current.on("getMessage", (message) => setMessages(message));
+
+        const chat = document.querySelector(".chat-wrapper");
+        chat.scrollTop = chat.scrollHeight;
+
     })
 
     function renderMessages(){
