@@ -32,7 +32,7 @@ io.on("connection", (socket) => {
     })
 
     socket.on("forceDisconnect", async () => {
-        socket.disconnect();
+        socket.leave("messenger");
         updateOnlineUsers();
     })
 
@@ -75,7 +75,6 @@ async function updateOnlineUsers(){
 async function sendMessages(){
     console.log("2000");
     let allMessages = await controllers.getMessages()
-
     io.sockets.emit("getMessage", allMessages)
 }
 

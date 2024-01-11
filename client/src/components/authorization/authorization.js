@@ -6,17 +6,14 @@ const Authorization = ({socket, setUserData}) => {
 
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
-    const [signData, setSignData] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
         if(socket.current){
-            console.log("Good morning!");
             socket.current.on("connect", () => {
                 console.log("User connected successfully!");
                 socket.current.on("authChecked", (data) => {
                     const {name, login} = data;
-                    setSignData(data);
                     setUserData(data);
 
                     if(typeof name !== "number")
@@ -34,9 +31,7 @@ const Authorization = ({socket, setUserData}) => {
     return (
         <div className="auth-form">
             <div className="auth-text">
-                <div className="title">
-                    Авторизация
-                </div>
+                <div className="title">Авторизация</div>
                 <hr />
             </div>
 
@@ -58,7 +53,7 @@ const Authorization = ({socket, setUserData}) => {
 
             <button
                 onClick={() => checkUserAuth(login, password)}
-                className="auth-send"> Войти </button>
+                className="auth-send">Войти</button>
                 
         </div>
     )

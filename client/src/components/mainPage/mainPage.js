@@ -22,7 +22,7 @@ const MainPage = ({socket, data}) => {
                     </div>
                 </div>
                 <div className="chat-content">
-                    <Chat socket = {socket}/>
+                    <Chat userData = {data} socket = {socket}/>
                 </div>
                 <div className="chat-input">
                     <ChatInput socket={socket}/>

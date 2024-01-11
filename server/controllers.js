@@ -30,7 +30,10 @@ class Post {
     }
 
     async getMessages(){
-        const [response] = await db.query("SELECT * FROM messages");
+        const [response] = await db.query(`
+            SELECT messages.*, name, login FROM messages
+            LEFT JOIN accounts ON accounts.id = messages.userID;
+        `);
         return response;
     }
 

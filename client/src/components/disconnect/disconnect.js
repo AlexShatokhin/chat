@@ -1,12 +1,16 @@
-import { useEffect } from "react";
-
+import {Link} from "react-router-dom"
 import "./disconnect.scss"
 const Disconnect = ({socket, data}) => {
 
     return (
         <div className="disconnect-content">
             <div className="username">Привет, {data.name}!</div>
-            <button onClick = {() => socket.current.emit("forceDisconnect")} className="disconnect-button">Выйти</button>
+            <Link to = "/">
+                <button onClick = {() => socket.current.emit("forceDisconnect")} className="disconnect-button">
+                    Выйти
+                </button>
+            </Link>
+
         </div>
     )
 }

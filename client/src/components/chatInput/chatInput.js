@@ -20,7 +20,8 @@ const ChatInput = ({socket}) => {
                 className="chat-form__input" 
                 placeholder="Введите сообщение"
                 value={message}
-                onChange={e => setMessage(e.target.value)}/>
+                onChange={e => setMessage(e.target.value)}
+                onKeyDown={e => e.key === "Enter" ? sendMessage() : null}/>
 
             <input 
                 type="button" 
