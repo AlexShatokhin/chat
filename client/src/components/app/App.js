@@ -1,6 +1,9 @@
-import  {useEffect, useRef, useState} from "react"
+import  {useEffect, useRef} from "react"
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 import {io} from "socket.io-client"
+import { useDispatch } from "react-redux";
+
+import { addSocket } from "../../actions/actions";
 
 import Authorization from "../authorization/authorization";
 import MainPage from "../mainPage/mainPage";
@@ -8,13 +11,13 @@ import MainPage from "../mainPage/mainPage";
 import './App.css';
 function App() {
 
-	const [userData, setUserData] = useState({});
 	const socket = useRef();
-
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		console.log("hello!")
 		socket.current = io("http://localhost:3030");
+		dispatch(addSocket(socket))
 	}, [])
 
 	return (
@@ -23,10 +26,10 @@ function App() {
 				<Routes>
 					<Route path="/" element = {
 						<header className="App-header">
-							<Authorization setUserData = {setUserData} socket = {socket}/>
+							<Authorization />
 						</header>
 					}/>
-					<Route path = "/:login" element = {<MainPage data = {userData} socket = {socket}/>}/>
+					<Route path = "/:login" element = {<MainPage />}/>
 				</Routes>
 			</BrowserRouter>
 

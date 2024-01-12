@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import img from "../../assets/unknown.png"
 
 import "./users.scss"
-const Users = ({socket}) => {
+const Users = () => {
 
     const [users, setUsers] = useState([]);
+    const socket = useSelector(state => state.socket);
 
     useEffect(() => {
         socket.current.emit("getUsersStatus")

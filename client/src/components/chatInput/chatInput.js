@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import "./chatInput.scss"
-const ChatInput = ({socket}) => {
+const ChatInput = () => {
 
-    const [message, setMessage] = useState("")
+    const [message, setMessage] = useState("");
+    const socket = useSelector(state => state.socket);
 
     function sendMessage(){
         if(message !== ""){

@@ -1,10 +1,14 @@
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./disconnect.scss"
-const Disconnect = ({socket, data}) => {
+const Disconnect = () => {
+
+    const userData = useSelector(state => state.authData);
+    const socket = useSelector(state => state.socket);
 
     return (
         <div className="disconnect-content">
-            <div className="username">Привет, {data.name}!</div>
+            <div className="username">Привет, {userData.name}!</div>
             <Link to = "/">
                 <button onClick = {() => socket.current.emit("forceDisconnect")} className="disconnect-button">
                     Выйти

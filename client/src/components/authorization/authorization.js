@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router";
+import {useDispatch, useSelector} from "react-redux"
+
+import { setUserInformation } from "../../actions/actions";
 
 import "./authorization.scss"
-const Authorization = ({socket, setUserData}) => {
+const Authorization = () => {
 
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+    const socket = useSelector(state => state.socket);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(socket.current){
+        if(socket){
             socket.current.on("connect", () => {
                 console.log("User connected successfully!");
                 socket.current.on("authChecked", (data) => {
                     const {name, login} = data;
-                    setUserData(data);
+                    dispatch(setUserInformation(data))
 
                     if(typeof name !== "number")
                         navigate(login)

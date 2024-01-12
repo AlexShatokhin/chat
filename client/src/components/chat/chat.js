@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import "./chat.scss"
-const Chat = ({socket, userData}) => {
+const Chat = () => {
 
     const [messages, setMessages] = useState([]);
+    const userData = useSelector(state => state.authData);
+    const socket = useSelector(state => state.socket);
+
 
     useEffect(() => {
         socket.current.on("getMessage", (message) => {
