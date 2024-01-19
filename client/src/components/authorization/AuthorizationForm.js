@@ -27,8 +27,9 @@ const AuthorizationForm = ({changeFormMode}) => {
             })
     }, [])
 
-    function checkUserAuth(login, password){
-		socket.current.emit("auth", login, password)
+    function checkUserAuth(){
+        if(login && password)
+		    socket.current.emit("auth", login, password)
 	}
 
     return (
@@ -38,28 +39,31 @@ const AuthorizationForm = ({changeFormMode}) => {
                 <hr />
             </div>
 
-            <input 
-                required
-                value={login}
-                onChange={e => setLogin(e.target.value)}
-                name = "login" 
-                type="text" 
-                className="auth-input" 
-                placeholder="Логин"/>
+            <div className={`input-wrapper ${login !== "" ? "input-wrapper-success" : "input-wrapper-error"}`}>
+                <input 
+                    value={login}
+                    onChange={e => setLogin(e.target.value)}
+                    name = "login" 
+                    type="text" 
+                    className="auth-input" 
+                    placeholder="Логин"/>
+            </div>
 
-            <input 
-                required
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                name = "password" 
-                type="password" 
-                className="auth-input"
-                placeholder="Пароль"/>
+            <div className={`input-wrapper ${password !== "" ? "input-wrapper-success" : "input-wrapper-error"}`}>
+                <input 
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    name = "password" 
+                    type="password" 
+                    className="auth-input"
+                    placeholder="Пароль"/>
+            </div>
+
 
             <input
                 type="button"
                 value="Войти"
-                onClick={() => checkUserAuth(login, password)}
+                onClick={checkUserAuth}
                 className="auth-send" />
                 
 

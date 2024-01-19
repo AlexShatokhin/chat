@@ -18,7 +18,8 @@ const RegistrationForm = ({checkUserAuth, changeFormMode}) => {
 
     function registerUser(){
         setRegistrationData({});
-        socket.current.emit("registerUser", name, login, password)
+        if(name && login && password)
+            socket.current.emit("registerUser", name, login, password)
     }
 
     return (
@@ -30,32 +31,39 @@ const RegistrationForm = ({checkUserAuth, changeFormMode}) => {
 
         <span className={`registration-message ${registrationData.status === 200 ? "green" : "red"}`}>{registrationData.message}</span>
 
-        <input 
-            required
-            value={name}
-            onChange={e => setName(e.target.value)}
-            name = "name" 
-            type="text" 
-            className="auth-input" 
-            placeholder="Имя"/>
+        <div className={`input-wrapper ${name !== "" ? "input-wrapper-success" : "input-wrapper-error"}`}>
+            <input 
+                value={name}
+                onChange={e => setName(e.target.value)}
+                name = "name" 
+                type="text" 
+                className="auth-input" 
+                placeholder="Имя"/>
+        </div>
 
-        <input 
-            required
-            value={login}
-            onChange={e => setLogin(e.target.value)}
-            name = "login" 
-            type="text" 
-            className="auth-input" 
-            placeholder="Логин"/>
+        <div className={`input-wrapper ${login !== "" ? "input-wrapper-success" : "input-wrapper-error"}`}>
+            <input 
+                value={login}
+                onChange={e => setLogin(e.target.value)}
+                name = "login" 
+                type="text" 
+                className="auth-input" 
+                placeholder="Логин"/>
+        </div>
 
-        <input 
-            required
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            name = "password" 
-            type="password" 
-            className="auth-input"
-            placeholder="Пароль"/>
+        <div className={`input-wrapper ${password !== "" ? "input-wrapper-success" : "input-wrapper-error"}`}>
+            <input 
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                name = "password" 
+                type="password" 
+                className="auth-input"
+                placeholder="Пароль"/>
+        </div>
+
+
+
+
 
         <input
             type="button"

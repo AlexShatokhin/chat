@@ -20,8 +20,45 @@
         }
     }
 
+
+    .input-wrapper{
+        position: relative;
+        &::after{
+            content: "";
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: none;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            padding: 0 2px 2px 2px;
+            width: 0px;
+            height: 0px;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: .2s all;
+        }
+
+        &-error::after{
+            content: "!";
+            background-color: #990000;
+            width: 20px;
+            height: 20px;
+            opacity: 1;
+            transition: .2s opacity;
+        }
+
+    }
+
+
+
     .auth-input{
         display: block;
+        position: relative;
         width: 90%;
         height: 40px;
         margin: 0 auto;
