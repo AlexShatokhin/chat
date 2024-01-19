@@ -5,8 +5,7 @@ class Post {
     async isUserSign(login, password){
         const [response] = await db.query(`SELECT * FROM accounts WHERE login = '${login}' AND password = '${password}'`);
         if(response.length){
-            const {name, login, isOnline, id} = response[0];
-            await db.query(`UPDATE accounts SET isOnline = '${!isOnline}'`)
+            const {name, login, id} = response[0];
             return {id, name, login}
         } else {
             return {
@@ -35,6 +34,25 @@ class Post {
             LEFT JOIN accounts ON accounts.id = messages.userID;
         `);
         return response;
+    }
+
+    async createUserAccount(name, login, password){
+        const [response] = await db.query(`SELECT * FROM accounts WHERE login = '${login}' OR name = '${password}'`);
+        if(response.length)
+            return {
+                status: 300,
+                message: "Пользователь с таким именем/логином уже существует"
+            }
+        else{
+            await db.query(`
+                INSERT INTO accounts(name, login, password)
+                VALUES('${name}', '${login}', '${password}')`);
+            
+            return {
+                status: 200,
+                message: "Пользователь успешно зарегистрирован!"
+            }
+        }
     }
 
 }

@@ -10,9 +10,11 @@ const Disconnect = () => {
         <div className="disconnect-content">
             <div className="username">Привет, {userData.name}!</div>
             <Link to = "/">
-                <button onClick = {() => socket.current.emit("forceDisconnect")} className="disconnect-button">
-                    Выйти
-                </button>
+                <input
+                    type="button" 
+                    onClick = {() => socket.current.emit("forceDisconnect")} 
+                    className="disconnect-button"
+                    value="Выйти" />
             </Link>
 
         </div>

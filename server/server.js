@@ -46,13 +46,17 @@ io.on("connection", (socket) => {
     })
 
     socket.on("sendAllMessages", async () => {
-        console.log("200");
         let allMessages = await controllers.getMessages()
         allMessages = allMessages.map(message => {
                                 message.isOwner = message.userID === socket.realID
                                 return message;
                             });
         io.sockets.emit("getMessage", allMessages)
+    })
+
+    socket.on("registerUser", async (name, login, password) => {
+        let registerInfo = await controllers.createUserAccount(name, login, password);
+        socket.emit("registerUserInfo", registerInfo);
     })
 })
 
