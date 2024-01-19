@@ -25,7 +25,7 @@ const AuthorizationForm = ({changeFormMode}) => {
                     navigate(login)
 
             })
-    }, [])
+    }, [socket])
 
     function checkUserAuth(){
         if(login && password)

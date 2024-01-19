@@ -1,10 +1,19 @@
 import {Link} from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { setUserInformation } from "../../actions/actions";
+
 import "./disconnect.scss"
 const Disconnect = () => {
 
     const userData = useSelector(state => state.authData);
     const socket = useSelector(state => state.socket);
+    const dispatch = useDispatch();
+
+    function disconnect(){
+        dispatch(setUserInformation({}))
+        socket.current.emit("forceDisconnect");
+    }
 
     return (
         <div className="disconnect-content">
@@ -12,7 +21,7 @@ const Disconnect = () => {
             <Link to = "/">
                 <input
                     type="button" 
-                    onClick = {() => socket.current.emit("forceDisconnect")} 
+                    onClick = {disconnect} 
                     className="disconnect-button"
                     value="Выйти" />
             </Link>
